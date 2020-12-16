@@ -6,7 +6,6 @@ import rafScheduler from 'raf-schd';
 
 import Icon from './Icon';
 import ProgressBar from './Progress';
-import { colors } from '../../../theme';
 
 type UrlShape = {
   type: 'video/mp4' | 'video/ogg',
@@ -65,7 +64,7 @@ const Button = props => (
       width: 32,
 
       ':hover': { opacity: 1 },
-      ':active': { color: colors.primary },
+      ':active': { color: '#00D7FF' },
     }}
     {...props}
   />
@@ -130,39 +129,40 @@ export default class View extends Component<ViewProps, ViewState> {
     const width = 854;
 
     return (
-      <div
-        css={{
-          backgroundColor: 'black',
-          lineHeight: 0,
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          maxWidth: width,
-          position: 'relative',
-          textAlign: 'center',
-        }}
-      >
-        <video
-          autoPlay={false}
-          controls={false}
-          onClick={this.playOrPause}
-          poster={data.poster}
-          ref={this.getVideo}
-          style={{ width: '100%', height: 'auto' }}
-        >
-          {data.sources.map((vid, idx) => (
-            <source key={idx} src={vid.url} type={vid.type} />
-          ))}
-          Your browser does not support HTML5 video.
-        </video>
-        {this.video ? (
-          <Footer interactionIsIdle={interactionIsIdle}>
-            <Button onClick={this.playOrPause}>
-              <Icon type={this.state.paused ? 'play' : 'pause'} size={32} />
-            </Button>
-            <ProgressBar progress={progress} />
-          </Footer>
-        ) : null}
-      </div>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/8jExmu2FqNM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      // <div
+      //   css={{
+      //     backgroundColor: 'black',
+      //     lineHeight: 0,
+      //     marginLeft: 'auto',
+      //     marginRight: 'auto',
+      //     maxWidth: width,
+      //     position: 'relative',
+      //     textAlign: 'center',
+      //   }}
+      // >
+      //   <video
+      //     autoPlay={false}
+      //     controls={false}
+      //     onClick={this.playOrPause}
+      //     poster={data.poster}
+      //     ref={this.getVideo}
+      //     style={{ width: '100%', height: 'auto' }}
+      //   >
+      //     {data.sources.map((vid, idx) => (
+      //       <source key={idx} src={vid.url} type={vid.type} />
+      //     ))}
+      //     Your browser does not support HTML5 video.
+      //   </video>
+      //   {this.video ? (
+      //     <Footer interactionIsIdle={interactionIsIdle}>
+      //       <Button onClick={this.playOrPause}>
+      //         <Icon type={this.state.paused ? 'play' : 'pause'} size={32} />
+      //       </Button>
+      //       <ProgressBar progress={progress} />
+      //     </Footer>
+      //   ) : null}
+      // </div>
     );
   }
 }
