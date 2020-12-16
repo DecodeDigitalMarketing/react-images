@@ -184,7 +184,7 @@ var View = function (_Component) {
           interactionIsIdle = _props.interactionIsIdle;
       var progress = this.state.progress;
 
-      return glam('iframe', { width: '560', height: '315', src: 'https://www.youtube.com/embed/8jExmu2FqNM', frameborder: '0', allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', allowfullscreen: true })
+      return glam('iframe', { width: '560', height: '315', src: 'https://www.youtube.com/embed/8jExmu2FqNM', frameBorder: '0', allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', allowFullScreen: true })
       // <div
       //   css={{
       //     backgroundColor: 'black',
