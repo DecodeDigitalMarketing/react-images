@@ -1,8 +1,8 @@
-import React, { cloneElement, Component, Children } from 'react';
+import React, { Component, cloneElement, Children } from 'react';
 import { findDOMNode, createPortal } from 'react-dom';
 import glam from 'glam';
 import rafScheduler from 'raf-schd';
-import { ViewPager, Frame, Track, View as View$1 } from 'react-view-pager';
+import { ViewPager, Frame, Track, View as View$2 } from 'react-view-pager';
 import ParseHtml from 'html-react-parser';
 import { FocusOn } from 'react-focus-on';
 import Fullscreen from 'react-full-screen';
@@ -97,6 +97,132 @@ var possibleConstructorReturn = function (self, call) {
 
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
+
+function calculateProgress(_ref) {
+  var currentTime = _ref.currentTime,
+      duration = _ref.duration;
+
+  return 100 / duration * currentTime;
+}
+
+var View = function (_Component) {
+  inherits(View, _Component);
+
+  function View() {
+    var _ref3;
+
+    var _temp, _this, _ret;
+
+    classCallCheck(this, View);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref3 = View.__proto__ || Object.getPrototypeOf(View)).call.apply(_ref3, [this].concat(args))), _this), _this.state = { paused: true, progress: 0 }, _this.handlePlay = function () {
+      _this.setState({ paused: false });
+    }, _this.handleTimeUpdate = rafScheduler(function () {
+      var progress = calculateProgress({
+        currentTime: _this.video.currentTime,
+        duration: _this.video.duration
+      });
+
+      _this.setState({ progress: progress });
+    }), _this.handlePause = function () {
+      _this.setState({ paused: true });
+    }, _this.playOrPause = function () {
+      var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'toggle';
+      var _this2 = _this,
+          video = _this2.video;
+
+
+      switch (type) {
+        case 'play':
+          video.play();
+          break;
+        case 'pause':
+          video.pause();
+          break;
+        default:
+          if (video.paused || video.ended) {
+            video.play();
+          } else {
+            video.pause();
+          }
+      }
+    }, _this.getVideo = function (ref) {
+      _this.video = ref;
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  createClass(View, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.video.addEventListener('play', this.handlePlay, false);
+      this.video.addEventListener('pause', this.handlePause, false);
+      this.video.addEventListener('timeupdate', this.handleTimeUpdate, false);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.video.removeEventListener('play', this.handlePlay);
+      this.video.removeEventListener('pause', this.handlePause);
+      this.video.removeEventListener('timeupdate', this.handleTimeUpdate);
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.currentIndex !== prevProps.currentIndex) {
+        this.playOrPause('pause');
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          data = _props.data,
+          interactionIsIdle = _props.interactionIsIdle;
+      var progress = this.state.progress;
+
+      return glam('iframe', { width: '560', height: '315', src: 'https://www.youtube.com/embed/8jExmu2FqNM', frameborder: '0', allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', allowfullscreen: true })
+      // <div
+      //   css={{
+      //     backgroundColor: 'black',
+      //     lineHeight: 0,
+      //     marginLeft: 'auto',
+      //     marginRight: 'auto',
+      //     maxWidth: width,
+      //     position: 'relative',
+      //     textAlign: 'center',
+      //   }}
+      // >
+      //   <video
+      //     autoPlay={false}
+      //     controls={false}
+      //     onClick={this.playOrPause}
+      //     poster={data.poster}
+      //     ref={this.getVideo}
+      //     style={{ width: '100%', height: 'auto' }}
+      //   >
+      //     {data.sources.map((vid, idx) => (
+      //       <source key={idx} src={vid.url} type={vid.type} />
+      //     ))}
+      //     Your browser does not support HTML5 video.
+      //   </video>
+      //   {this.video ? (
+      //     <Footer interactionIsIdle={interactionIsIdle}>
+      //       <Button onClick={this.playOrPause}>
+      //         <Icon type={this.state.paused ? 'play' : 'pause'} size={32} />
+      //       </Button>
+      //       <ProgressBar progress={progress} />
+      //     </Footer>
+      //   ) : null}
+      // </div>
+      ;
+    }
+  }]);
+  return View;
+}(Component);
 
 var Base = function Base(_ref) {
   var css = _ref.css,
@@ -785,7 +911,7 @@ var viewCSS = function viewCSS() {
 
 var viewBaseClassName = componentBaseClassNames.View;
 
-var View = function View(props) {
+var View$1 = function View(props) {
   var data = props.data,
       formatters = props.formatters,
       getStyles = props.getStyles,
@@ -827,7 +953,7 @@ var carouselComponents = {
   Navigation: Navigation,
   NavigationPrev: NavigationPrev,
   NavigationNext: NavigationNext,
-  View: View
+  View: View$1
 };
 
 var defaultCarouselComponents = function defaultCarouselComponents(providedComponents) {
@@ -1427,7 +1553,7 @@ var Carousel = function (_Component) {
     value: function render() {
       var _components = this.components,
           Container = _components.Container,
-          View = _components.View;
+          View$1 = _components.View;
       var currentIndex = this.state.currentIndex;
       var _props3 = this.props,
           frameProps = _props3.frameProps,
@@ -1465,9 +1591,9 @@ var Carousel = function (_Component) {
               }),
               views && views.map(function (data, index) {
                 return glam(
-                  View$1,
+                  View$2,
                   { className: className('view-wrapper'), key: index },
-                  glam(View, _extends({}, commonProps, { data: data, index: index }))
+                  data.type === "image" ? glam(View$1, _extends({}, commonProps, { data: data, index: index })) : glam(View, _extends({}, commonProps, { data: data, index: index }))
                 );
               })
             )

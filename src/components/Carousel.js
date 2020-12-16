@@ -5,6 +5,7 @@ import { findDOMNode } from 'react-dom';
 import glam from 'glam';
 import rafScheduler from 'raf-schd';
 import { ViewPager, Frame, Track, View as PageView } from 'react-view-pager';
+import VideoView from './VideoViewer/View';
 
 const viewPagerStyles = {
   flex: '1 1 auto',
@@ -402,7 +403,12 @@ class Carousel extends Component<CarouselProps, CarouselState> {
                 views.map((data, index) => {
                   return (
                     <PageView className={className('view-wrapper')} key={index}>
-                      <View {...commonProps} data={data} index={index} />
+                      {data.type === "image" ? (
+                          <View {...commonProps} data={data} index={index} />
+                        ) : (
+                          <VideoView {...commonProps} data={data} index={index} />
+                        )
+                      }
                     </PageView>
                   );
                 })}
