@@ -102,24 +102,6 @@ export default class View extends Component<ViewProps, ViewState> {
   handlePause = () => {
     this.setState({ paused: true });
   };
-  playOrPause = (type: 'play' | 'pause' | 'toggle' = 'toggle') => {
-    const { video } = this;
-
-    switch (type) {
-      case 'play':
-        video.play();
-        break;
-      case 'pause':
-        video.pause();
-        break;
-      default:
-        if (video.paused || video.ended) {
-          video.play();
-        } else {
-          video.pause();
-        }
-    }
-  };
   getVideo = (ref: ElementRef<*>) => {
     this.video = ref;
   };
@@ -129,40 +111,19 @@ export default class View extends Component<ViewProps, ViewState> {
     const width = 854;
 
     return (
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/8jExmu2FqNM" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-      // <div
-      //   css={{
-      //     backgroundColor: 'black',
-      //     lineHeight: 0,
-      //     marginLeft: 'auto',
-      //     marginRight: 'auto',
-      //     maxWidth: width,
-      //     position: 'relative',
-      //     textAlign: 'center',
-      //   }}
-      // >
-      //   <video
-      //     autoPlay={false}
-      //     controls={false}
-      //     onClick={this.playOrPause}
-      //     poster={data.poster}
-      //     ref={this.getVideo}
-      //     style={{ width: '100%', height: 'auto' }}
-      //   >
-      //     {data.sources.map((vid, idx) => (
-      //       <source key={idx} src={vid.url} type={vid.type} />
-      //     ))}
-      //     Your browser does not support HTML5 video.
-      //   </video>
-      //   {this.video ? (
-      //     <Footer interactionIsIdle={interactionIsIdle}>
-      //       <Button onClick={this.playOrPause}>
-      //         <Icon type={this.state.paused ? 'play' : 'pause'} size={32} />
-      //       </Button>
-      //       <ProgressBar progress={progress} />
-      //     </Footer>
-      //   ) : null}
-      // </div>
+      <div
+        css={{
+          backgroundColor: 'black',
+          lineHeight: 0,
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          maxWidth: width,
+          position: 'relative',
+          textAlign: 'center',
+        }}
+      >
+        <iframe width={width} height={width/1.7777777777777777777} src={data.videoSrc} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+      </div>
     );
   }
 }

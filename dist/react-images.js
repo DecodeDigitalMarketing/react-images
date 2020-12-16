@@ -132,26 +132,6 @@
         _this.setState({ progress: progress });
       }), _this.handlePause = function () {
         _this.setState({ paused: true });
-      }, _this.playOrPause = function () {
-        var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'toggle';
-        var _this2 = _this,
-            video = _this2.video;
-
-
-        switch (type) {
-          case 'play':
-            video.play();
-            break;
-          case 'pause':
-            video.pause();
-            break;
-          default:
-            if (video.paused || video.ended) {
-              video.play();
-            } else {
-              video.pause();
-            }
-        }
       }, _this.getVideo = function (ref) {
         _this.video = ref;
       }, _temp), possibleConstructorReturn(_this, _ret);
@@ -186,41 +166,23 @@
             interactionIsIdle = _props.interactionIsIdle;
         var progress = this.state.progress;
 
-        return glam('iframe', { width: '560', height: '315', src: 'https://www.youtube.com/embed/8jExmu2FqNM', frameBorder: '0', allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', allowFullScreen: true })
-        // <div
-        //   css={{
-        //     backgroundColor: 'black',
-        //     lineHeight: 0,
-        //     marginLeft: 'auto',
-        //     marginRight: 'auto',
-        //     maxWidth: width,
-        //     position: 'relative',
-        //     textAlign: 'center',
-        //   }}
-        // >
-        //   <video
-        //     autoPlay={false}
-        //     controls={false}
-        //     onClick={this.playOrPause}
-        //     poster={data.poster}
-        //     ref={this.getVideo}
-        //     style={{ width: '100%', height: 'auto' }}
-        //   >
-        //     {data.sources.map((vid, idx) => (
-        //       <source key={idx} src={vid.url} type={vid.type} />
-        //     ))}
-        //     Your browser does not support HTML5 video.
-        //   </video>
-        //   {this.video ? (
-        //     <Footer interactionIsIdle={interactionIsIdle}>
-        //       <Button onClick={this.playOrPause}>
-        //         <Icon type={this.state.paused ? 'play' : 'pause'} size={32} />
-        //       </Button>
-        //       <ProgressBar progress={progress} />
-        //     </Footer>
-        //   ) : null}
-        // </div>
-        ;
+        var width = 854;
+
+        return glam(
+          'div',
+          {
+            css: {
+              backgroundColor: 'black',
+              lineHeight: 0,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              maxWidth: width,
+              position: 'relative',
+              textAlign: 'center'
+            }
+          },
+          glam('iframe', { width: width, height: width / 1.7777777777777777777, src: data.videoSrc, frameBorder: '0', allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', allowFullScreen: true })
+        );
       }
     }]);
     return View;
