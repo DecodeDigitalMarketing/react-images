@@ -73,21 +73,6 @@ const Button = props => (
 export default class View extends Component<ViewProps, ViewState> {
   video: HTMLVideoElement;
   state = { paused: true, progress: 0 };
-  componentDidMount() {
-    this.video.addEventListener('play', this.handlePlay, false);
-    this.video.addEventListener('pause', this.handlePause, false);
-    this.video.addEventListener('timeupdate', this.handleTimeUpdate, false);
-  }
-  componentWillUnmount() {
-    this.video.removeEventListener('play', this.handlePlay);
-    this.video.removeEventListener('pause', this.handlePause);
-    this.video.removeEventListener('timeupdate', this.handleTimeUpdate);
-  }
-  componentDidUpdate(prevProps: ViewProps) {
-    if (this.props.currentIndex !== prevProps.currentIndex) {
-      this.playOrPause('pause');
-    }
-  }
   handlePlay = () => {
     this.setState({ paused: false });
   };

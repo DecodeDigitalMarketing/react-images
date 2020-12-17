@@ -138,27 +138,6 @@
     }
 
     createClass(View, [{
-      key: 'componentDidMount',
-      value: function componentDidMount() {
-        this.video.addEventListener('play', this.handlePlay, false);
-        this.video.addEventListener('pause', this.handlePause, false);
-        this.video.addEventListener('timeupdate', this.handleTimeUpdate, false);
-      }
-    }, {
-      key: 'componentWillUnmount',
-      value: function componentWillUnmount() {
-        this.video.removeEventListener('play', this.handlePlay);
-        this.video.removeEventListener('pause', this.handlePause);
-        this.video.removeEventListener('timeupdate', this.handleTimeUpdate);
-      }
-    }, {
-      key: 'componentDidUpdate',
-      value: function componentDidUpdate(prevProps) {
-        if (this.props.currentIndex !== prevProps.currentIndex) {
-          this.playOrPause('pause');
-        }
-      }
-    }, {
       key: 'render',
       value: function render() {
         var _props = this.props,
