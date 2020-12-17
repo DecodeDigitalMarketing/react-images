@@ -81,6 +81,7 @@ const Footer = (props: Props) => {
       {...innerProps}
     >
       <Caption {...props} />
+      <FooterSocial {...props} />
     </Div>
   );
 };
@@ -117,7 +118,7 @@ export const FooterSocial = (props: ViewType) => {
   const { social } = currentView;
 
   return (
-    <Span>
+    <Span className="social-links">
         <a
           href={social.fb}
           target="_blank"

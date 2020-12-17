@@ -346,7 +346,8 @@
         // https://github.com/threepointone/glam/issues/35
         , style: style
       }, innerProps),
-      glam(Caption, props)
+      glam(Caption, props),
+      glam(FooterSocial, props)
     );
   };
 
@@ -384,7 +385,7 @@
 
     return glam(
       Span,
-      null,
+      { className: 'social-links' },
       glam(
         'a',
         {

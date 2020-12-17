@@ -344,7 +344,8 @@ var Footer = function Footer(props) {
       // https://github.com/threepointone/glam/issues/35
       , style: style
     }, innerProps),
-    glam(Caption, props)
+    glam(Caption, props),
+    glam(FooterSocial, props)
   );
 };
 
@@ -382,7 +383,7 @@ var FooterSocial = function FooterSocial(props) {
 
   return glam(
     Span,
-    null,
+    { className: 'social-links' },
     glam(
       'a',
       {
