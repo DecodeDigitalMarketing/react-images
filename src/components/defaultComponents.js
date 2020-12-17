@@ -1,7 +1,7 @@
 // @flow
 
 import Container from './Container';
-import Footer, { FooterCaption, FooterCount } from './Footer';
+import Footer, { FooterCaption, FooterSocial, FooterCount } from './Footer';
 import Header, { HeaderClose, HeaderFullscreen } from './Header';
 import { Navigation, NavigationPrev, NavigationNext } from './Navigation';
 import { Blanket, Dialog, Positioner } from './Modal/styled';
@@ -12,6 +12,7 @@ export type CarouselComponents = {
   Footer: typeof Footer,
   FooterCaption: typeof FooterCaption,
   FooterCount: typeof FooterCount,
+  FooterSocial: typeof FooterSocial,
   Header: typeof Header,
   HeaderClose: typeof HeaderClose,
   HeaderFullscreen: typeof HeaderFullscreen,
@@ -26,6 +27,7 @@ export const carouselComponents: CarouselComponents = {
   Footer: Footer,
   FooterCaption: FooterCaption,
   FooterCount: FooterCount,
+  FooterSocial: FooterSocial,
   Header: Header,
   HeaderClose: HeaderClose,
   HeaderFullscreen: HeaderFullscreen,

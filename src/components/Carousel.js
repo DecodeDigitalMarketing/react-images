@@ -315,7 +315,6 @@ class Carousel extends Component<CarouselProps, CarouselState> {
         {...commonProps}
         components={{
           Caption: FooterCaption,
-          Count: FooterCount,
         }}
         innerProps={{ innerRef: this.getFooter }}
       />
