@@ -102,12 +102,12 @@ export default class View extends Component<ViewProps, ViewState> {
           lineHeight: 0,
           marginLeft: 'auto',
           marginRight: 'auto',
-          maxWidth: width,
+          maxWidth: '100%',
           position: 'relative',
           textAlign: 'center',
         }}
       >
-        <iframe width={width} height={width/1.7777777777777777777} src={data.videoSrc} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        <iframe src={data.videoSrc} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       </div>
     );
   }

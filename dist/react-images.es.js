@@ -143,8 +143,6 @@ var View = function (_Component) {
           interactionIsIdle = _props.interactionIsIdle;
       var progress = this.state.progress;
 
-      var width = 854;
-
       return glam(
         'div',
         {
@@ -153,12 +151,12 @@ var View = function (_Component) {
             lineHeight: 0,
             marginLeft: 'auto',
             marginRight: 'auto',
-            maxWidth: width,
+            maxWidth: '100%',
             position: 'relative',
             textAlign: 'center'
           }
         },
-        glam('iframe', { width: width, height: width / 1.7777777777777777777, src: data.videoSrc, frameBorder: '0', allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', allowFullScreen: true })
+        glam('iframe', { src: data.videoSrc, frameBorder: '0', allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', allowFullScreen: true })
       );
     }
   }]);
