@@ -62,7 +62,7 @@ const Header = (props: Props) => {
     toggleFullscreen,
   } = modalProps;
   const FsIcon = isFullscreen ? FullscreenExit : FullscreenEnter;
-  const { CloseButton, FullscreenButton } = components;
+  const { Count, CloseButton, FullscreenButton } = components;
   const state = { isFullscreen, isModal };
 
   return (
@@ -76,7 +76,9 @@ const Header = (props: Props) => {
       }}
       {...innerProps}
     >
-      <span />
+      <span>
+        <Count {...props} />
+      </span>
       <span>
         {allowFullscreen ? (
           <FullscreenButton
