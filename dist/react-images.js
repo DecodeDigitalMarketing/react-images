@@ -158,7 +158,7 @@
               textAlign: 'center'
             }
           },
-          glam('iframe', { src: data.videoSrc, frameBorder: '0', allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', allowFullScreen: true })
+          glam('iframe', { width: '560', height: '315', src: data.videoSrc, frameBorder: '0', allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', allowFullScreen: true })
         );
       }
     }]);
