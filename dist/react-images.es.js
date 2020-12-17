@@ -1798,7 +1798,8 @@ var _initialiseProps$1 = function _initialiseProps() {
     var _components4 = _this2.components,
         Header = _components4.Header,
         HeaderClose = _components4.HeaderClose,
-        HeaderFullscreen = _components4.HeaderFullscreen;
+        HeaderFullscreen = _components4.HeaderFullscreen,
+        FooterCount = _components4.FooterCount;
 
     var _getFormatters2 = _this2.getFormatters(),
         getCloseLabel = _getFormatters2.getCloseLabel,
@@ -1812,7 +1813,8 @@ var _initialiseProps$1 = function _initialiseProps() {
       getFullscreenLabel: getFullscreenLabel,
       components: {
         CloseButton: HeaderClose,
-        FullscreenButton: HeaderFullscreen
+        FullscreenButton: HeaderFullscreen,
+        FooterCount: FooterCount
       },
       data: _this2.getViewData(),
       innerProps: { innerRef: _this2.getHeader }
